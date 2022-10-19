@@ -1,10 +1,7 @@
 package bearinmind;
 
 import java.io.IOException;
-/**
- *
- * @author Majercsik Szabolcs
- */
+
 public class Bearinmind {
 
     /**
