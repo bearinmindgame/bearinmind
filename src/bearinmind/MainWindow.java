@@ -1,6 +1,7 @@
 package bearinmind;
 
 import java.io.IOException;
+import java.awt.Graphics;
 import javax.swing.JFrame;
 
 /**
@@ -13,5 +14,11 @@ public class MainWindow extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setAutoRequestFocus(true);
+    }
+
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        g.drawString("Hello World!", getWidth() / 2, getHeight() / 2);
     }
 }
