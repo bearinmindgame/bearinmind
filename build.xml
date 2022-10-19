@@ -1,29 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="bearinmind" default="dist" basedir=".">
-  <description>
-    Bear in Mind game
-  </description>
+<project name="bearinmind" default="build" basedir=".">
+  <description>Bear in Mind game</description>
   <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
+  <property name="out" location="out"/>
+  <property name="dest" location="out/classes"/>
 
   <target name="init">
     <tstamp/>
-    <mkdir dir="${build}"/>
+    <mkdir dir="${out}"/>
+    <mkdir dir="${dest}"/>
   </target>
 
   <target name="compile" depends="init" description="compile the source">
-    <javac srcdir="${src}" destdir="${build}"/>
+    <javac srcdir="${src}" destdir="${dest}"/>
   </target>
 
-  <target name="dist" depends="compile" description="generate the distribution">
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/BearInMind-${DSTAMP}.jar" basedir="${build}"/>
+  <target name="build" depends="compile" description="build jar file">
+    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar" basedir="${dest}"/>
   </target>
 
   <target name="clean" description="clean up">
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
+    <delete dir="${out}"/>
   </target>
 </project>
