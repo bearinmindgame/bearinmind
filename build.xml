@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="bearinmind" default="dist" basedir=".">
-  <description>
-    Bear in Mind game
-  </description>
-  <property name="src" location="src"/>
-  <property name="build" location="build"/>
-  <property name="dist" location="dist"/>
+<project name="bearinmind" default="build" basedir=".">
+  <description>Bear in Mind game</description>
+  <property name="src" location="src/main" />
+  <property name="testsrc" location="src/test" />
+  <property name="out" location="out" />
+  <property name="dest" location="out/classes" />
+
+  <path id="test.classpath">
+    <pathelement path="${dest}/test" />
+    <pathelement path="${dest}/main" />
+    <fileset dir="lib" includes="*.jar" />
+    <fileset dir="${ant.home}/lib" includes="*.jar" />
+  </path>
 
   <target name="init">
-    <tstamp/>
-    <mkdir dir="${build}"/>
+    <tstamp />
+    <mkdir dir="${dest}/main" />
+    <mkdir dir="${dest}/test" />
+    <mkdir dir="${out}/test-report" />
   </target>
 
   <target name="compile" depends="init" description="compile the source">
-    <javac srcdir="${src}" destdir="${build}"/>
+    <javac srcdir="${src}" destdir="${dest}/main" includeantruntime="false" />
+    <javac srcdir="${testsrc}" destdir="${dest}/test" classpathref="test.classpath" includeantruntime="false" />
   </target>
 
-  <target name="dist" depends="compile" description="generate the distribution">
-    <mkdir dir="${dist}/lib"/>
-    <jar jarfile="${dist}/BearInMind-${DSTAMP}.jar" basedir="${build}"/>
+  <target name="test" depends="compile" description="run junit5 tests">
+    <junitlauncher haltOnFailure="true" printSummary="true">
+      <classpath refid="test.classpath" />
+      <testclasses outputdir="${out}/test-report">
+        <fileset dir="${dest}/test" includes="**/*.class" />
+        <listener type="legacy-xml" sendSysOut="true" sendSysErr="true" />
+        <listener type="legacy-plain" sendSysOut="true" />
+      </testclasses>
+    </junitlauncher>
+  </target>
+
+  <target name="build" depends="compile" description="build jar file">
+    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar" basedir="${dest}" />
   </target>
 
   <target name="clean" description="clean up">
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
+    <delete dir="${out}" />
   </target>
 </project>

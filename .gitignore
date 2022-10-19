@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -25,6 +24,10 @@ hs_err_pid*
 # NetBeans
 nbproject/
 
+# VSCode
+.vscode/
+
 # Artifacts
 dist/
 build/
+out/
