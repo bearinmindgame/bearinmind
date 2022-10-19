@@ -37,7 +37,11 @@
   </target>
 
   <target name="build" depends="compile" description="build jar file">
-    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar" basedir="${dest}" />
+    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar" basedir="${dest}/main">
+      <manifest>
+        <attribute name="Main-Class" value="bearinmind.Bearinmind"/>
+      </manifest>
+    </jar>
   </target>
 
   <target name="clean" description="clean up">
