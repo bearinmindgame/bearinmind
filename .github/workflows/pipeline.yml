@@ -30,7 +30,7 @@ jobs:
         tar -C lib -xzf lib/ant.tar.gz --wildcards apache-ant-1.10.12/lib/*.jar --strip-components=2
 
     - name: Test with Ant
-      run: ant -lib ./lib -noinput -buildfile build.xml test
+      run: ant -lib ./lib -noinput -buildfile build.xml clean test
     - name: Report test results
       uses: dorny/test-reporter@v1
       with:
