@@ -33,6 +33,7 @@ jobs:
       run: ant -lib ./lib -noinput -buildfile build.xml clean test
     - name: Report test results
       uses: dorny/test-reporter@v1
+      if: success() || failure()
       with:
         name: JUnit
         path: out/test-report/*.xml
