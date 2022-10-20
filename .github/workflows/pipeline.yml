@@ -30,7 +30,7 @@ jobs:
         tar xfz lib/ant.tar.gz
 
     - name: Test with Ant
-      run: ant -noinput -buildfile build.xml test
+      run: ant -lib ./lib -noinput -buildfile build.xml test
     - name: Report test results
       uses: dorny/test-reporter@v1
       with:
@@ -38,4 +38,4 @@ jobs:
         path: out/test-report/*.xml
         reporter: java-junit
     - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+      run: ant -lib ./lib -noinput -buildfile build.xml
