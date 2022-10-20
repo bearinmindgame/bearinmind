@@ -23,7 +23,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
     - name: Install optional Ant components
-      run: sudo apt-get install ant-optional
+      run: |
+        if [ ! -f lib/ant.tar.gz ]; then
+          curl -o lib/ant.tar.gz https://downloads.apache.org/ant/binaries/apache-ant-1.10.12-bin.tar.gz
+        fi
+        tar xfz lib/ant.tar.gz
+
     - name: Test with Ant
       run: ant -noinput -buildfile build.xml test
     - name: Report test results
