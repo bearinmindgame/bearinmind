@@ -22,6 +22,8 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
+    - name: Install optional Ant components
+      run: sudo apt-get install ant-optional
     - name: Test with Ant
       run: ant -noinput -buildfile build.xml test
     - name: Report test results
