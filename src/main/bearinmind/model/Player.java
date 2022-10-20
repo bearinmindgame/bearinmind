@@ -1,5 +1,49 @@
 package bearinmind.model;
 
 public class Player extends Entity {
-    //the player's move unctions will be called from the view, in order to move the player around the map
+    private int health;
+
+    public int getHealth() {
+        return health;
+    }
+    
+    public Player() {
+        health = 3;
+    }
+
+    public void caught(){
+        health--;
+        if(health == 0){
+            GameModel.gameOver();
+        }
+    }
+
+    @Override
+    public void moveUp(){
+        super.moveUp();
+        checkBasket();
+    }
+
+    @Override
+    public void moveDown(){
+        super.moveUp();
+        checkBasket();
+    }
+
+    @Override
+    public void moveLeft(){
+        super.moveUp();
+        checkBasket();
+    }
+
+    @Override
+    public void moveRight(){
+        super.moveUp();
+        checkBasket();
+    }
+
+    public void checkBasket(){
+        //TODO iterate through the basket list of GameModel (not yet implemented)
+        //if player's position matches with one of the basket's, call GameMOdel.basketFound
+    }
 }

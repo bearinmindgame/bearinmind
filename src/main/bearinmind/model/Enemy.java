@@ -26,6 +26,8 @@ public class Enemy extends Entity {
     }
 
     public void checkCatch(){
-        //TODO check if this is on same the position as the player
+        if(x == GameModel.getPlayer().x && y == GameModel.getPlayer().y){
+            GameModel.playerCaught();
+        }
     }
 }
