@@ -27,7 +27,7 @@ jobs:
         if [ ! -f lib/ant.tar.gz ]; then
           curl -o lib/ant.tar.gz https://downloads.apache.org/ant/binaries/apache-ant-1.10.12-bin.tar.gz
         fi
-        tar xfz lib/ant.tar.gz
+        tar -C lib -xzf lib/ant.tar.gz --wildcards apache-ant-1.10.12/lib/*.jar --strip-components=2
 
     - name: Test with Ant
       run: ant -lib ./lib -noinput -buildfile build.xml test
