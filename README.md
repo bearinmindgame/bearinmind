@@ -1,9 +1,5 @@
 # Bear in Mind
 
-> This branch is for testing GitHub Actions. This will be deleted, don't merge here.
-> This is not the real development branch
-> New version bump should come
-
 2D adventure game written in Java.
 
 ## Building from source
