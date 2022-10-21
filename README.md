@@ -2,6 +2,7 @@
 
 > This branch is for testing GitHub Actions. This will be deleted, don't merge here.
 > This is not the real development branch
+> Commit
 
 2D adventure game written in Java.
 
