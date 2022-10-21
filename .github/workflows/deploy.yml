@@ -26,7 +26,7 @@ jobs:
         branch: main-dumpster
         major_pattern: "breaking change"
         minor_pattern: "^feat:"
-        format: "${major}.${minor}.${patch}-${increment}"
+        version_format: "${major}.${minor}.${patch}-${increment}"
         change_path: "src/main"
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
