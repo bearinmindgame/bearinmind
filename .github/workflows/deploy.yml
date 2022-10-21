@@ -25,4 +25,4 @@ jobs:
       uses: google-github-actions/release-please-action@v3
       with:
         release-type: java
-        package-name: Bear in Mind
+        package-name: BearInMind
