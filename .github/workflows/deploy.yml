@@ -26,4 +26,4 @@ jobs:
       with:
         release-type: java
         package-name: Bear in Mind
-        path: out/BearInMind-*.jar
+        path: out/BearInMind.jar
