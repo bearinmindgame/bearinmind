@@ -14,7 +14,6 @@ jobs:
     - name: Create release PR
       uses: google-github-actions/release-please-action@v3
       with:
-        command: release-pr
         release-type: java
         package-name: BearInMind
         default-branch: main-dumpster
