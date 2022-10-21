@@ -18,20 +18,9 @@ jobs:
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
     - name: Create release
-      id: rp
-      uses: google-github-actions/release-please-action@v3
+      uses: ncipollo/release-action@v1
       with:
-        command: github-release
-        release-type: simple
-        package-name: BearInMind
-        default-branch: main-dumpster
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      if: ${{ steps.rp.outputs.release_created }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.rp.outputs.upload_url }}
-        asset_path: ./out/BearInMind.java
-        asset_name: BearInMind-v${{ steps.rp.outputs.major }}.${{ steps.rp.outputs.minor }}.${{ steps.rp.outputs.patch }}.jar
-        asset_content_type: application/java-archive
+        artifacts: ./out/BearInMind.java
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: '1.0.0'
+        commit: 'main-dumpster'
