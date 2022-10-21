@@ -19,13 +19,16 @@ jobs:
         distribution: 'temurin'
     - name: Determine new version
       id: ver
-      uses: paulhatch/semantic-version@v4
+      uses: paulhatch/semantic-version@v5
       with:
         tag_prefix: "v"
         major_pattern: "breaking change"
+        major_regexp_flags: "gi"
         minor_pattern: "^feat:"
-        format: "${major}.${minor}.${patch}-${increment}"
+        minor_regexp_flags: "i"
+        format: "v${major}.${minor}.${patch}-${increment}"
         change_path: "src/main"
+        search_commit_body: true
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
     - name: Create release
