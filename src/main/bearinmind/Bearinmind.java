@@ -1,4 +1,4 @@
-package bearinmind;
+package main.bearinmind;
 
 import java.io.IOException;
 
