@@ -13,7 +13,7 @@ jobs:
       with:
         ref: main-dumpster
         fetch-depth: 0
-    - run: echo `git log`
+    - run: git fetch --tags
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
