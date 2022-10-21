@@ -19,7 +19,7 @@ jobs:
         distribution: 'temurin'
     - name: Determine new version
       id: ver
-      uses: paulhatch/semantic-version@v5
+      uses: paulhatch/semantic-version@v5.0.0-alpha2
       with:
         tag_prefix: "v"
         major_pattern: "breaking change"
