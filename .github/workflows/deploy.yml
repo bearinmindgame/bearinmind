@@ -27,6 +27,7 @@ jobs:
         default-branch: main-dumpster
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
+      if: ${{ steps.rp.outputs.release_created }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
