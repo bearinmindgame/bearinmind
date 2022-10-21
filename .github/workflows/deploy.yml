@@ -35,5 +35,5 @@ jobs:
       with:
         artifacts: ./out/BearInMind.jar
         token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ steps.ver.outputs.version }}
+        tag: v${{ steps.ver.outputs.version }}
         commit: 'main-dumpster'
