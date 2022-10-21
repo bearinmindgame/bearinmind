@@ -28,7 +28,7 @@ jobs:
         major_pattern: "breaking change"
         minor_pattern: "feat:"
         version_format: "${major}.${minor}.${patch}-${increment}"
-        change_path: "src/main"
+        change_path: "."
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
     - name: Create release
