@@ -14,7 +14,8 @@ public class MainWindow extends JFrame {
     
     public MainWindow() throws IOException {
         setTitle("Bear in Mind");
-        setSize(500, 500);
+        setSize(960, 680);
+        //setSize(board.getBoardWidth() * 40, board.getBoardHeight() * 40);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setAutoRequestFocus(true);
