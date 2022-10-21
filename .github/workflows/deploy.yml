@@ -1,19 +1,15 @@
-# This workflow will build a Java project with Ant
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-ant
-
 name: Java CD
 
 on:
-  push:
-    branches: [ "development" ]
+  release:
+    types: [published]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  Upload:
     steps:
     - uses: actions/checkout@v3
+      with:
+        ref: 'main-dumpster'
     - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
@@ -21,8 +17,12 @@ jobs:
         distribution: 'temurin'
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
-    - name: Release
-      uses: google-github-actions/release-please-action@v3
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        release-type: java
-        package-name: BearInMind
+        upload_url: ${{ release.upload_url }}
+        asset_path: out/BearInMind.java
+        asset_name: BearInMind-${{ release.tag_name }}.jar
+        asset_content_type: application/java-archive
