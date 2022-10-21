@@ -22,7 +22,7 @@ jobs:
       uses: google-github-actions/release-please-action@v3
       with:
         command: github-release
-        release-type: java
+        release-type: simple
         package-name: BearInMind
         default-branch: main-dumpster
     - name: Upload Release Asset
