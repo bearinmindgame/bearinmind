@@ -23,14 +23,11 @@ jobs:
       id: ver
       uses: paulhatch/semantic-version@v5.0.0-alpha2
       with:
-        tag_prefix: "v"
+        branch: main-dumpster
         major_pattern: "breaking change"
-        major_regexp_flags: "gi"
         minor_pattern: "^feat:"
-        minor_regexp_flags: "i"
-        format: "v${major}.${minor}.${patch}-${increment}"
+        format: "${major}.${minor}.${patch}-${increment}"
         change_path: "src/main"
-        search_commit_body: true
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml
     - name: Create release
