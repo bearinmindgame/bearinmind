@@ -5,7 +5,7 @@ name: Java CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "development" ]
 
 jobs:
   build:
@@ -27,4 +27,3 @@ jobs:
         release-type: java
         package-name: Bear in Mind
         path: out/BearInMind-*.jar
-        default-branch: release
