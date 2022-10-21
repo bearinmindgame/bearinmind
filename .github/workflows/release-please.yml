@@ -11,6 +11,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        ref: development
     - name: Create release PR
       uses: google-github-actions/release-please-action@v3
       with:
