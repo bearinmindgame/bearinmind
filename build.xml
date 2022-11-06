@@ -18,6 +18,8 @@
     <mkdir dir="${dest}/main" />
     <mkdir dir="${dest}/test" />
     <mkdir dir="${out}/test-report" />
+    <mkdir dir="lib" />
+    <get src="https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar" dest="lib" />
   </target>
 
   <target name="compile" depends="init" description="compile the source">
