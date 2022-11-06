@@ -24,6 +24,7 @@ jobs:
         distribution: 'temurin'
     - name: Install optional Ant components
       run: |
+        mkdir lib
         if [ ! -f lib/ant.tar.gz ]; then
           curl -o lib/ant.tar.gz https://downloads.apache.org/ant/binaries/apache-ant-1.10.12-bin.tar.gz
         fi
