@@ -7,14 +7,15 @@ public class Player extends Entity {
         return health;
     }
     
-    public Player() {
+    public Player(GameModel model) {
+        super(model);
         health = 3;
     }
 
     public void caught(){
         health--;
         if(health == 0){
-            GameModel.gameOver();
+            model.gameOver();
         }
     }
 

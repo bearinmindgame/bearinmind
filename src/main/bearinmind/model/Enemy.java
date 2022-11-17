@@ -1,33 +1,36 @@
 package bearinmind.model;
 
 public class Enemy extends Entity {
+
+    public Enemy(GameModel model) {
+        super(model);
+    }
+
     @Override
-    public void moveUp(){
+    public void moveUp() {
         super.moveUp();
         checkCatch();
     }
 
     @Override
-    public void moveDown(){
+    public void moveDown() {
         super.moveUp();
         checkCatch();
     }
 
     @Override
-    public void moveLeft(){
+    public void moveLeft() {
         super.moveUp();
         checkCatch();
     }
 
     @Override
-    public void moveRight(){
+    public void moveRight() {
         super.moveUp();
         checkCatch();
     }
 
-    public void checkCatch(){
-        if(x == GameModel.getPlayer().x && y == GameModel.getPlayer().y){
-            GameModel.playerCaught();
-        }
+    public void checkCatch() {
+        // TODO check catch
     }
 }

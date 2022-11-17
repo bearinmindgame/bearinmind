@@ -1,56 +1,61 @@
 package bearinmind.model;
 
 public class GameModel {
-    private static Player player;
-    private static Enemy enemy1;
-    private static Enemy enemy2;
-    private static int basketNum;
-    //some list of baskets
-    //map representation
-    
+    private Player player;
+    private Enemy enemy1;
+    private Enemy enemy2;
+    private int basketNum;
+    private Map map;
+    // some list of baskets
+
     public GameModel() {
-        player = new Player();
-        enemy1 = new Enemy();
-        enemy2 = new Enemy();
+        map = new Map(10, 10);
+        player = new Player(this);
+        enemy1 = new Enemy(this);
+        enemy2 = new Enemy(this);
     }
 
-    public static Player getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public static Enemy getEnemy1() {
+    public Enemy getEnemy1() {
         return enemy1;
     }
 
-    public static Enemy getEnemy2() {
+    public Enemy getEnemy2() {
         return enemy2;
     }
 
-    public static void readMap(){
-        //TODO connect this with the map reader and map txt files
-        //generate baskets based on the map
-    }
-    
-    public static void playerCaught(){
-        player.caught();
-        //TODO reset level
+    public Map getMap() {
+        return map;
     }
 
-    public static void basketFound(Basket b){
+    public void readMap() {
+        // TODO connect this with the map reader and map txt files
+        // generate baskets based on the map
+    }
+
+    public void playerCaught() {
+        player.caught();
+        // TODO reset level
+    }
+
+    public void basketFound(Basket b) {
         basketNum--;
-        //TODO remove basket b from list
-        if(basketNum == 0){
+        // TODO remove basket b from list
+        if (basketNum == 0) {
             gameWon();
         }
     }
 
-    public static void gameOver(){
-        //TODO decide what happens when the player runs out of health
-    }
-    
-    public static void gameWon(){
-        //TODO decide what happens when the player finds all baskets
+    public void gameOver() {
+        // TODO decide what happens when the player runs out of health
     }
 
-    //TODO create movement for the enemys, as that should be automated
+    public void gameWon() {
+        // TODO decide what happens when the player finds all baskets
+    }
+
+    // TODO create movement for the enemys, as that should be automated
 }
