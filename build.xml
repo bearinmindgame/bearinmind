@@ -16,6 +16,7 @@
 
   <target name="init">
     <tstamp />
+    <property name="version" value="USERBUILD-${DSTAMP}" />
     <mkdir dir="${dest}/main" />
     <mkdir dir="${dest}/test" />
     <mkdir dir="${out}/test-report" />
@@ -40,7 +41,7 @@
   </target>
 
   <target name="build" depends="compile" description="build jar file">
-    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar">
+    <jar jarfile="${out}/BearInMind-${version}.jar">
       <fileset dir="${dest}/main"/>
       <fileset dir="${res}"/>
       <manifest>

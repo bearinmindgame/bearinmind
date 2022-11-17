@@ -30,11 +30,11 @@ jobs:
         version_format: "${major}.${minor}.${patch}-${increment}"
         change_path: "."
     - name: Build with Ant
-      run: ant -noinput -buildfile build.xml
+      run: ant -noinput -buildfile build.xml -Dversion=v${{ steps.ver.outputs.version }}
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: ./out/BearInMind.jar
+        artifacts: ./out/BearInMind-*.jar
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: v${{ steps.ver.outputs.version }}
         commit: 'main'
