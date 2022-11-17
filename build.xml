@@ -5,6 +5,7 @@
   <property name="testsrc" location="src/test" />
   <property name="out" location="out" />
   <property name="dest" location="out/classes" />
+  <property name="res" location="src/res" />
 
   <path id="test.classpath">
     <pathelement path="${dest}/test" />
@@ -39,7 +40,9 @@
   </target>
 
   <target name="build" depends="compile" description="build jar file">
-    <jar jarfile="${out}/BearInMind.jar" basedir="${dest}/main">
+    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar">
+      <fileset dir="${dest}/main"/>
+      <fileset dir="${res}"/>
       <manifest>
         <attribute name="Main-Class" value="bearinmind.Bearinmind"/>
       </manifest>
