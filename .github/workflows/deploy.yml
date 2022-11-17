@@ -1,0 +1,40 @@
+name: Java CD
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  Upload:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        repository: bearinmindgame/bearinmind
+        ref: main
+        fetch-depth: 0
+    - run: git fetch --tags
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+    - name: Determine new version
+      id: ver
+      uses: paulhatch/semantic-version@v5.0.0-alpha2
+      with:
+        branch: main
+        major_pattern: "breaking change"
+        minor_pattern: "feat:"
+        version_format: "${major}.${minor}.${patch}-${increment}"
+        change_path: "."
+    - name: Build with Ant
+      run: ant -noinput -buildfile build.xml
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: ./out/BearInMind.jar
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: v${{ steps.ver.outputs.version }}
+        commit: 'main'
