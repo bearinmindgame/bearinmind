@@ -18,6 +18,8 @@
     <mkdir dir="${dest}/main" />
     <mkdir dir="${dest}/test" />
     <mkdir dir="${out}/test-report" />
+    <mkdir dir="lib" />
+    <get src="https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar" dest="lib" />
   </target>
 
   <target name="compile" depends="init" description="compile the source">
@@ -30,14 +32,14 @@
       <classpath refid="test.classpath" />
       <testclasses outputdir="${out}/test-report">
         <fileset dir="${dest}/test" includes="**/*.class" />
+        <fork dir="${basedir}" />
         <listener type="legacy-xml" sendSysOut="true" sendSysErr="true" />
-        <listener type="legacy-plain" sendSysOut="true" />
       </testclasses>
     </junitlauncher>
   </target>
 
   <target name="build" depends="compile" description="build jar file">
-    <jar jarfile="${out}/BearInMind-${DSTAMP}.jar" basedir="${dest}/main">
+    <jar jarfile="${out}/BearInMind.jar" basedir="${dest}/main">
       <manifest>
         <attribute name="Main-Class" value="bearinmind.Bearinmind"/>
       </manifest>
