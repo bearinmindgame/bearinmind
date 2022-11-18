@@ -5,8 +5,15 @@ public class Entity {
     protected int x;
     protected int y;
 
-    public Entity(GameModel model) {
+    protected Entity(GameModel model) {
+        this(model, 0, 0);
+    }
+
+    protected Entity(GameModel model, int x, int y) {
+        if (model == null) throw new NullPointerException("Model for the entity cannot be null.");
         this.model = model;
+        this.x = x;
+        this.y = y;
     }
 
     public int getX() {

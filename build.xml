@@ -10,6 +10,7 @@
   <path id="test.classpath">
     <pathelement path="${dest}/test" />
     <pathelement path="${dest}/main" />
+    <pathelement path="${res}" />
     <fileset dir="lib" includes="*.jar" />
     <fileset dir="${ant.home}/lib" includes="*.jar" />
   </path>
@@ -36,8 +37,10 @@
         <fileset dir="${dest}/test" includes="**/*.class" />
         <fork dir="${basedir}" />
         <listener type="legacy-xml" sendSysOut="true" sendSysErr="true" />
+        <listener type="legacy-plain" sendSysOut="true" sendSysErr="true" />
       </testclasses>
     </junitlauncher>
+    <echo message="Test reports can be found at '${out}/test-report'" />
   </target>
 
   <target name="build" depends="compile" description="build jar file">

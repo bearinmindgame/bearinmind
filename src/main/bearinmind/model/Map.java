@@ -24,6 +24,6 @@ public class Map {
     }
 
     public Terrain terrainAt(int x, int y) {
-        return fields[y][x];
+        return fields[x][y];
     }
 }
