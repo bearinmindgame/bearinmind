@@ -59,6 +59,7 @@ public class MainWindow extends JFrame implements KeyListener {
         } else if (e.getKeyCode() == KeyEvent.VK_D) {
             model.getPlayer().moveRight();
         }
+        repaint();
     }
 
     @Override
