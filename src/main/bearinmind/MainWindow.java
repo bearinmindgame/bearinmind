@@ -26,6 +26,8 @@ public class MainWindow extends JFrame implements KeyListener {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setAutoRequestFocus(true);
+        setFocusable(true);
+        addKeyListener(this);
     }
 
     @Override
@@ -61,7 +63,6 @@ public class MainWindow extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("Key released : " + e.getKeyCode());
-        
+        System.out.println("Player is at " + model.getPlayer().getX() + ", " + model.getPlayer().getY());
     }
 }
