@@ -25,12 +25,34 @@ jobs:
       uses: paulhatch/semantic-version@v5.0.0-alpha2
       with:
         branch: main
-        major_pattern: "breaking change"
+        major_pattern: "breaking:"
         minor_pattern: "feat:"
         version_format: "${major}.${minor}.${patch}-${increment}"
         change_path: "."
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml -Dversion=v${{ steps.ver.outputs.version }}
+    - name: Generate changelog
+      uses: ardalanamini/auto-changelog@v3
+      id: changelog
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        commit-types: |
+          breaking: Breaking Changes
+          feat: New Features
+          fix: Bug Fixes
+          revert: Reverts
+          refactor: Refactors
+          docs: Documentation Changes
+          build: Build System
+          ci: Continuous Integration
+          test: Tests
+          chore: Chores
+          other: Uncategorized Changes
+        default-commit-type: Uncategorized Changes
+        mention-authors: true
+        mention-new-contributors: false
+        include-compare: false
+        semver: false
     - name: Create release
       uses: ncipollo/release-action@v1
       with:
@@ -38,3 +60,4 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         tag: v${{ steps.ver.outputs.version }}
         commit: 'main'
+        body: ${{ steps.changelog.outputs.changelog }}
