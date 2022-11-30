@@ -12,7 +12,7 @@ public class Basket {
     public int getX() {
         return x;
     }
-    
+
     public int getY() {
         return y;
     }

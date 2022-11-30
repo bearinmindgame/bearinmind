@@ -49,7 +49,7 @@ public class EntityTest {
         int x = model.getMap().width - 1;
         int y = model.getMap().height - 1;
         entity = new Entity(model, x, y);
-        
+
         entity.moveDown();
         assertEquals(x, entity.getX());
         assertEquals(y, entity.getY());
@@ -57,5 +57,4 @@ public class EntityTest {
         assertEquals(x, entity.getX());
         assertEquals(y, entity.getY());
     }
-
 }
