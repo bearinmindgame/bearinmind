@@ -32,3 +32,27 @@ ant test
 ```
 
 Apart from the console output, test reports will be saved to `out/test-report` in XML format.
+
+## Contributing to the project
+
+### Commit messages
+
+Commit messages should be written with the syntax below. Commits not following the synax will be ignored during versioning and changelog generation.
+
+```txt
+type: description of changes (#issuenumber)
+```
+
+where the valid types are:
+
+- `breaking` (breaking changes, new major version)
+- `feat` (new features, new minor version)
+- `fix` (bug fixes)
+- `test` (new tests written)
+- `revert`
+- `refactor` (when there is no functional change)
+- `docs` (javadoc, readme etc)
+- `build` (build.xml)
+- `ci` (github workflows)
+- `chore` (only by actions)
+- `other`
