@@ -1,14 +1,13 @@
 package bearinmind;
 
-import java.io.IOException;
-import java.awt.Graphics;
-import javax.swing.JFrame;
-
 import bearinmind.model.GameModel;
 
-/**
- * Main window for the game.
- */
+import java.awt.Graphics;
+import java.io.IOException;
+
+import javax.swing.JFrame;
+
+/** Main window for the game. */
 public class MainWindow extends JFrame {
 
     private GameModel model;
