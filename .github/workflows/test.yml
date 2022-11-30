@@ -39,3 +39,11 @@ jobs:
         name: JUnit
         path: out/test-report/*.xml
         reporter: java-junit
+    - name: Comment coverage report to PR
+      if: github.event_name == 'pull_request'
+      uses: madrapps/jacoco-report@v1.3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        paths: ./out/test-coverage/report.xml
+        min-coverage-overall: 40
+        min-coverage-changed-files: 60
