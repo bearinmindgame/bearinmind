@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - 'main'
-      - 'tool-1-format'
 
 jobs:
   Upload:
@@ -62,4 +61,3 @@ jobs:
         tag: v${{ steps.ver.outputs.version }}
         commit: 'main'
         body: ${{ steps.changelog.outputs.changelog }}
-        draft: true
