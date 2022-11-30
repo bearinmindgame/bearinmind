@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="bearinmind" default="build" basedir=".">
+<project name="bearinmind" default="build" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+
   <description>Bear in Mind game</description>
   <property name="src" location="src/main" />
   <property name="testsrc" location="src/test" />
@@ -21,39 +22,84 @@
     <mkdir dir="${dest}/main" />
     <mkdir dir="${dest}/test" />
     <mkdir dir="${out}/test-report" />
+    <mkdir dir="${out}/test-coverage" />
     <mkdir dir="lib" />
-    <get src="https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar" dest="lib" />
   </target>
 
-  <target name="compile" depends="init" description="compile the source">
+  <target name="testinit" depends="init" description="download testing libraries from the internet">
+    <echo message="Getting libraries for testing" />
+    <!-- JUnit -->
+    <echo message="Getting JUnit 5..." />
+    <get skipexisting="true" src="https://repo1.maven.org/maven2/org/junit/platform/junit-platform-console-standalone/1.9.1/junit-platform-console-standalone-1.9.1.jar" dest="lib" />
+    <!-- JaCoCo-->
+    <echo message="Getting JaCoCo..." />
+    <get skipexisting="true" src="https://repo1.maven.org/maven2/org/jacoco/jacoco/0.8.8/jacoco-0.8.8.zip" dest="lib" />
+    <unzip src="lib/jacoco-0.8.8.zip" dest=".">
+      <patternset>
+        <include name="lib/*.jar" />
+      </patternset>
+    </unzip>
+  </target>
+
+  <target name="compile" depends="init" description="compile main sources">
     <javac srcdir="${src}" destdir="${dest}/main" includeantruntime="false" />
-    <javac srcdir="${testsrc}" destdir="${dest}/test" classpathref="test.classpath" includeantruntime="false" />
   </target>
 
-  <target name="test" depends="compile" description="run junit5 tests">
+  <target name="testcompile" depends="testinit" description="compile test sources">
+    <javac srcdir="${src}" destdir="${dest}/main" debug="on" includeantruntime="false" />
+    <javac srcdir="${testsrc}" destdir="${dest}/test" classpathref="test.classpath" debug="on" includeantruntime="false" />
+  </target>
+
+  <target name="test" depends="testcompile" description="run junit5 tests">
+    <taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml" classpathref="test.classpath" />
+
+    <jacoco:agent property="agent" output="file" destfile="${out}/test-coverage/cov.exec" />
+
     <junitlauncher haltOnFailure="true" printSummary="true">
       <classpath refid="test.classpath" />
       <testclasses outputdir="${out}/test-report">
+        <fork dir="${basedir}">
+          <jvmarg value="${agent}" />
+        </fork>
         <fileset dir="${dest}/test" includes="**/*.class" />
-        <fork dir="${basedir}" />
         <listener type="legacy-xml" sendSysOut="true" sendSysErr="true" />
         <listener type="legacy-plain" sendSysOut="true" sendSysErr="true" />
       </testclasses>
     </junitlauncher>
     <echo message="Test reports can be found at '${out}/test-report'" />
+
+    <jacoco:report>
+      <executiondata>
+        <file file="${out}/test-coverage/cov.exec" />
+      </executiondata>
+      <structure name="Bear in Mind">
+        <classfiles>
+          <fileset dir="${dest}/main" />
+        </classfiles>
+        <sourcefiles encoding="UTF-8">
+          <fileset dir="${src}" />
+        </sourcefiles>
+      </structure>
+
+      <html destdir="${out}/test-coverage/report" />
+      <xml destfile="${out}/test-coverage/report.xml" />
+    </jacoco:report>
+
+    <echo message="Coverage reports can be found at '${out}/test-coverage" />
   </target>
 
   <target name="build" depends="compile" description="build jar file">
     <jar jarfile="${out}/BearInMind-${version}.jar">
-      <fileset dir="${dest}/main"/>
-      <fileset dir="${res}"/>
+      <fileset dir="${dest}/main" />
+      <fileset dir="${res}" />
       <manifest>
-        <attribute name="Main-Class" value="bearinmind.Bearinmind"/>
+        <attribute name="Main-Class" value="bearinmind.Bearinmind" />
       </manifest>
     </jar>
   </target>
 
   <target name="clean" description="clean up">
     <delete dir="${out}" />
+    <delete dir="lib" />
   </target>
 </project>
