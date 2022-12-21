@@ -61,7 +61,6 @@ public class Player extends Entity {
 
     public void checkBasket() {
         // TODO iterate through the basket list of GameModel (not yet implemented)
-        // if player's position matches with one of the basket's, call
-        // GameMOdel.basketFound
+        // if player's position matches with one of the basket's, call GameModel.basketFound
     }
 }

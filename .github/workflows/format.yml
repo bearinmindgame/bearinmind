@@ -1,0 +1,17 @@
+name: Google Java Format
+
+on:
+  push:
+    branches: [ "**" ]
+
+jobs:
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Autoformat
+        uses: axel-op/googlejavaformat-action@v3
+        with:
+          args: --replace --aosp --skip-reflowing-long-strings
+          commit-message: "chore: Google Java Format [ignore]"

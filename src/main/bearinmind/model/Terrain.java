@@ -30,5 +30,4 @@ public enum Terrain {
             image = img;
         }
     }
-
 }

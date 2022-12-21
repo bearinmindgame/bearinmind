@@ -11,5 +11,4 @@ public class Bearinmind {
         MainWindow mainWindow = new MainWindow();
         mainWindow.setVisible(true);
     }
-    
 }
