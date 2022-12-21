@@ -27,19 +27,19 @@ public class Player extends Entity {
 
     @Override
     public void moveDown(){
-        super.moveUp();
+        super.moveDown();
         checkBasket();
     }
 
     @Override
     public void moveLeft(){
-        super.moveUp();
+        super.moveLeft();
         checkBasket();
     }
 
     @Override
     public void moveRight(){
-        super.moveUp();
+        super.moveRight();
         checkBasket();
     }
 
