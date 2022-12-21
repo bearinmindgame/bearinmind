@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import bearinmind.model.GameModel;
+import bearinmind.model.Player;
 
 /**
  * Main window for the game.
@@ -14,6 +15,7 @@ import bearinmind.model.GameModel;
 public class MainWindow extends JFrame implements KeyListener {
 
     private GameModel model;
+
     public MainWindow() throws IOException {
         initializeComponents();
         model = new GameModel();
@@ -32,20 +34,20 @@ public class MainWindow extends JFrame implements KeyListener {
 
     @Override
     public void paint(Graphics g) {
-        super.paint(g);
-        int w = getWidth() / model.getMap().width;
-        int h = getHeight() / model.getMap().height;
+        int ox = getInsets().left;
+        int oy = getInsets().top;
+        int w = (getWidth() - ox - getInsets().right) / model.getMap().width;
+        int h = (getHeight() - oy - getInsets().bottom) / model.getMap().height;
         for (int i = 0; i < model.getMap().height; i++) {
             for (int j = 0; j < model.getMap().width; j++) {
-                g.drawImage(model.getMap().terrainAt(j, i).image, j * w, i * h, w, h, this);
+                g.drawImage(model.getMap().terrainAt(j, i).image, ox + j * w, oy + i * h, w, h, this);
             }
         }
+        g.drawImage(Player.image, ox + w * model.getPlayer().getX(), oy + h * model.getPlayer().getY(), w, h, this);
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
-        
     }
 
     @Override
@@ -64,6 +66,5 @@ public class MainWindow extends JFrame implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-        System.out.println("Player is at " + model.getPlayer().getX() + ", " + model.getPlayer().getY());
     }
 }
