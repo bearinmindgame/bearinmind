@@ -1,20 +1,16 @@
 package bearinmind;
 
 import bearinmind.model.GameModel;
+import bearinmind.model.Player;
 
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.swing.JFrame;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import bearinmind.model.GameModel;
-import bearinmind.model.Player;
-
-/**
- * Main window for the game.
- */
+/** Main window for the game. */
 public class MainWindow extends JFrame implements KeyListener {
 
     private GameModel model;
@@ -43,15 +39,21 @@ public class MainWindow extends JFrame implements KeyListener {
         int h = (getHeight() - oy - getInsets().bottom) / model.getMap().height;
         for (int i = 0; i < model.getMap().height; i++) {
             for (int j = 0; j < model.getMap().width; j++) {
-                g.drawImage(model.getMap().terrainAt(j, i).image, ox + j * w, oy + i * h, w, h, this);
+                g.drawImage(
+                        model.getMap().terrainAt(j, i).image, ox + j * w, oy + i * h, w, h, this);
             }
         }
-        g.drawImage(Player.image, ox + w * model.getPlayer().getX(), oy + h * model.getPlayer().getY(), w, h, this);
+        g.drawImage(
+                Player.image,
+                ox + w * model.getPlayer().getX(),
+                oy + h * model.getPlayer().getY(),
+                w,
+                h,
+                this);
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -68,6 +70,5 @@ public class MainWindow extends JFrame implements KeyListener {
     }
 
     @Override
-    public void keyReleased(KeyEvent e) {
-    }
+    public void keyReleased(KeyEvent e) {}
 }
