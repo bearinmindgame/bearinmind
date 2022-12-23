@@ -31,6 +31,7 @@ jobs:
         change_path: "."
     - name: Build with Ant
       run: ant -noinput -buildfile build.xml -Dversion=v${{ steps.ver.outputs.version }}
+    - run: chmod +x ./out/BearInMind-*.jar
     - name: Generate changelog
       uses: ardalanamini/auto-changelog@v3
       id: changelog
