@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.bearinmind;
+package bearinmind;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -23,19 +23,7 @@ public class Model {
     }
     
     private void fileReader() {
-        InputStream is;
-        is = ResourceLoader.loadResource("levels/test.txt");
-        try (Scanner sc = new Scanner(is)) {
-            String line = readNextLine(sc);
-            while (!line.isEmpty()) {
-                levelRows.add(line);
-                line = readNextLine(sc);
-            }
-            boardWidth = levelRows.get(0).length();
-            boardHeight = levelRows.size();
-        } catch (Exception e) {
-            System.out.println("hiba");
-        }
+        
     }
     
     private String readNextLine(Scanner sc) {

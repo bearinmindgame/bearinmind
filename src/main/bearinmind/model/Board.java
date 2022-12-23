@@ -3,13 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main.bearinmind;
+package bearinmind.model;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.io.IOException;
 import javax.swing.JPanel;
+import bearinmind.Model;
 
 /**
  *
@@ -21,14 +22,7 @@ public class Board extends JPanel {
     private Image grass, road, water, wall, tree, gate1, gate2;
     
     Board() throws IOException {
-        grass = ResourceLoader.loadImage("textures/grass.png");
-        road = ResourceLoader.loadImage("textures/road.png");
-        water = ResourceLoader.loadImage("textures/water.png");
 
-        wall = ResourceLoader.loadImage("textures/wall.png");
-        tree = ResourceLoader.loadImage("textures/tree.png");
-        gate1 = ResourceLoader.loadImage("textures/gate1.png");
-        gate2 = ResourceLoader.loadImage("textures/gate2.png");
     }
     
     @Override
