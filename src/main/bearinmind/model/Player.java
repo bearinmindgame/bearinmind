@@ -1,6 +1,22 @@
 package bearinmind.model;
 
+import java.awt.Image;
+
+import javax.imageio.ImageIO;
+
 public class Player extends Entity {
+
+    public static final Image image = image();
+
+    private static Image image() {
+        try {
+            return ImageIO.read(Player.class.getResourceAsStream("player.png"));
+        } catch (Exception e) {
+            System.err.println("Player image could not be found!");
+            return null;
+        }
+    }
+
     private int health;
 
     public int getHealth() {
@@ -27,24 +43,24 @@ public class Player extends Entity {
 
     @Override
     public void moveDown() {
-        super.moveUp();
+        super.moveDown();
         checkBasket();
     }
 
     @Override
     public void moveLeft() {
-        super.moveUp();
+        super.moveLeft();
         checkBasket();
     }
 
     @Override
     public void moveRight() {
-        super.moveUp();
+        super.moveRight();
         checkBasket();
     }
 
     public void checkBasket() {
         // TODO iterate through the basket list of GameModel (not yet implemented)
-        // if player's position matches with one of the basket's, call GameMOdel.basketFound
+        // if player's position matches with one of the basket's, call GameModel.basketFound
     }
 }
